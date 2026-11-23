@@ -114,6 +114,8 @@ test('existe workflow manual de GitHub Actions para compilar APK Debug en Godot 
   assert.match(yml, /workflow_dispatch:/);
   assert.doesNotMatch(yml, /^\s*push:/m);
   assert.doesNotMatch(yml, /^\s*pull_request:/m);
+  assert.doesNotMatch(yml, /android-actions\/setup-android/);
+  assert.match(yml, /sdkmanager/);
   assert.match(yml, /4\.7\.2-stable/);
   assert.match(yml, /4\.7\.2\.stable/);
   assert.match(yml, /--export-debug/);
