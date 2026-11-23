@@ -33,6 +33,9 @@ test('export_presets.cfg configura APK (no AAB) con soporte ARM 32 y 64 bits', (
   const content = fs.readFileSync(exportPresetsPath, 'utf8');
   assert.match(content, /platform="Android"/);
   assert.match(content, /gradle_build\/export_format=0/);
+  assert.match(content, /gradle_build\/use_gradle_build=false/);
+  assert.match(content, /gradle_build\/min_sdk=""/);
+  assert.match(content, /gradle_build\/target_sdk=""/);
   assert.match(content, /architectures\/armeabi-v7a=true/);
   assert.match(content, /architectures\/arm64-v8a=true/);
   assert.match(content, /\.apk"/);
