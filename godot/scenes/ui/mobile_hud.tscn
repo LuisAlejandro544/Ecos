@@ -1,0 +1,367 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/mobile_hud.gd" id="1_hud_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.08, 0.09, 0.12, 0.78)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.58, 0.66, 0.65)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_letter"]
+bg_color = Color(0.14, 0.11, 0.09, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.52, 0.04, 0.06, 0.95)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 28.0
+content_margin_top = 24.0
+content_margin_right = 28.0
+content_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_status"]
+bg_color = Color(0.04, 0.045, 0.06, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.08, 0.1, 0.7)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 14.0
+content_margin_top = 8.0
+content_margin_right = 14.0
+content_margin_bottom = 8.0
+
+[node name="MobileHUD" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_hud_script")
+
+[node name="ColdVignette" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.72, 0.92, 0.05)
+
+[node name="Crosshair" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.9, 0.9, 0.9, 0.6)
+
+[node name="TouchLayer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LookArea" type="Control" parent="TouchLayer"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 0.45
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoystickArea" type="Control" parent="TouchLayer"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = -250.0
+offset_right = 254.0
+offset_bottom = -30.0
+grow_vertical = 0
+
+[node name="JoystickRing" type="ColorRect" parent="TouchLayer/JoystickArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.12, 0.14, 0.18, 0.42)
+
+[node name="JoystickKnob" type="ColorRect" parent="TouchLayer/JoystickArea/JoystickRing"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 34.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.75, 0.78, 0.85, 0.65)
+
+[node name="ActionCluster" type="Control" parent="TouchLayer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -340.0
+offset_top = -260.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="InteractButton" type="Button" parent="TouchLayer/ActionCluster"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Leer Carta"
+
+[node name="FlashlightButton" type="Button" parent="TouchLayer/ActionCluster"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 115.0
+offset_right = 296.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Linterna"
+
+[node name="SprintButton" type="Button" parent="TouchLayer/ActionCluster"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 128.0
+offset_right = 172.0
+offset_bottom = 212.0
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Correr"
+
+[node name="CrouchButton" type="Button" parent="TouchLayer/ActionCluster"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 140.0
+offset_right = 54.0
+offset_bottom = 218.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Agachar"
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 18.0
+offset_right = -24.0
+offset_bottom = 74.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+
+[node name="StatusPanel" type="PanelContainer" parent="TopBar"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_status")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar/StatusPanel"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="NightLabel" type="Label" parent="TopBar/StatusPanel/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.24, 0.24, 1)
+theme_override_font_sizes/font_size = 17
+text = "NOCHE 1 / 3"
+
+[node name="ColdLabel" type="Label" parent="TopBar/StatusPanel/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.82, 0.96, 1)
+theme_override_font_sizes/font_size = 16
+text = "FRÍO (sin suéter): 28%"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="PauseButton" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(118, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+text = "Pausa"
+
+[node name="PromptBanner" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 92.0
+offset_right = 260.0
+offset_bottom = 132.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.84, 1)
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+
+[node name="LetterPopup" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="LetterPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0, 0.0, 0.0, 0.72)
+
+[node name="Panel" type="PanelContainer" parent="LetterPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -220.0
+offset_right = 310.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_letter")
+
+[node name="Margin" type="MarginContainer" parent="LetterPopup/Panel"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="LetterPopup/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LetterTitle" type="Label" parent="LetterPopup/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.25, 0.25, 1)
+theme_override_font_sizes/font_size = 24
+text = "Nota manchada de sangre sobre la mesa de noche"
+horizontal_alignment = 1
+
+[node name="LetterBody" type="Label" parent="LetterPopup/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.87, 0.78, 1)
+theme_override_font_sizes/font_size = 17
+text = "«Dormías tan tranquilo en tu cabaña del bosque...
+Te traje aquí para jugar un poco antes de que amanezca.
+
+Veo que solo llevas una camisa puesta; esta casa suele volverse helada de madrugada.
+Te doy 3 NOCHES para encontrar cómo salir. Si te atrapo antes de que escapes, perderás una noche... y la tercera será tu última.
+
+La puerta principal está sellada. Empieza a buscar.»"
+autowrap_mode = 3
+
+[node name="CloseLetterButton" type="Button" parent="LetterPopup/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Dejar la Carta"
+
+[node name="PausePopup" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="PausePopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0, 0.0, 0.0, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="PausePopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -155.0
+offset_right = 220.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_letter")
+
+[node name="VBox" type="VBoxContainer" parent="PausePopup/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="PauseHeading" type="Label" parent="PausePopup/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Pausa"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PausePopup/Panel/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Continuar"
+
+[node name="SimulateNightButton" type="Button" parent="PausePopup/Panel/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Probar Captura (Avanzar Noche)"
+
+[node name="MenuButton" type="Button" parent="PausePopup/Panel/VBox"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Salir al Menú"

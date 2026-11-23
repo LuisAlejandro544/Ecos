@@ -1,0 +1,8 @@
+# Archivos generados localmente por Godot Engine 4.7.2 y compilaciones Android
+.godot/
+android/
+builds/
+*.keystore
+*.jks
+*.tmp
+export_credentials.cfg

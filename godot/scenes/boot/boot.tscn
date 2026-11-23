@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/boot/boot.gd" id="1_boot_script"]
+[ext_resource type="Environment" path="res://resources/environments/abyss_horror_env.tres" id="2_horror_env"]
+
+[node name="BootRoot" type="Node3D"]
+script = ExtResource("1_boot_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_horror_env")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+far = 120.0

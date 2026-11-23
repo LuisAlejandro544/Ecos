@@ -1,0 +1,6 @@
+{
+  "name": "Ecos en la Penumbra - Configuracion Godot 4.7.2",
+  "description": "Entorno web minimo Hello World y configuracion base modular en Godot 4.7.2 para juego movil de terror.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

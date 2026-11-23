@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/controls_screen.gd" id="1_ctrl_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctrl"]
+bg_color = Color(0.06, 0.065, 0.08, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.12, 0.14, 0.85)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 28.0
+content_margin_top = 24.0
+content_margin_right = 28.0
+content_margin_bottom = 24.0
+
+[node name="ControlsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctrl_script")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.027, 0.036, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 40
+
+[node name="Panel" type="PanelContainer" parent="Margin"]
+custom_minimum_size = Vector2(580, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ctrl")
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Heading" type="Label" parent="Margin/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Controles Cómodos para Teléfono"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Margin/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "• Pulgar izquierdo (Joystick amplio): caminar por la casa del asesino.
+• Zona derecha de pantalla: desliza suavemente para girar la cámara.
+• Botón LINTERNA: enciende o apaga la luz en la oscuridad.
+• Botón INTERACTUAR: aparece automáticamente al mirar la Carta del Asesino en la mesa de noche o puertas.
+• Botones AGACHARSE / CORRER: grandes y separados para evitar toques accidentales."
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="Margin/Panel/VBox"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Volver al Menú"

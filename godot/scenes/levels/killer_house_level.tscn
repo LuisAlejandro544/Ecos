@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/levels/killer_house_level.gd" id="1_level_script"]
+[ext_resource type="Environment" path="res://resources/environments/abyss_horror_env.tres" id="2_horror_env"]
+[ext_resource type="PackedScene" path="res://assets/models/environments/killer_house.glb" id="3_house_glb"]
+[ext_resource type="Script" path="res://scripts/player/first_person_controller.gd" id="4_player_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mobile_hud.tscn" id="5_mobile_hud"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
+radius = 0.34
+height = 1.72
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_letter"]
+size = Vector3(0.55, 0.35, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(1.4, 2.2, 0.5)
+
+[node name="KillerHouseLevel" type="Node3D"]
+script = ExtResource("1_level_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_horror_env")
+
+[node name="KillerHouseGeometry" parent="." instance=ExtResource("3_house_glb")]
+
+[node name="NightstandLampLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30, 0.92, 3.26)
+light_color = Color(0.95, 0.52, 0.25, 1)
+light_energy = 1.35
+shadow_enabled = true
+omni_range = 5.4
+
+[node name="HallwayFlickerLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.45, 2.55, -1.8)
+light_color = Color(0.56, 0.64, 0.78, 1)
+light_energy = 0.78
+omni_range = 6.2
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -1.55, 0.08, 2.15)
+script = ExtResource("4_player_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88, 0)
+shape = SubResource("CapsuleShape3D_player")
+
+[node name="HeadPivot" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/HeadPivot"]
+current = true
+fov = 68.0
+near = 0.08
+far = 90.0
+
+[node name="Flashlight" type="SpotLight3D" parent="Player/HeadPivot/Camera3D"]
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 2.4
+shadow_enabled = true
+spot_range = 14.0
+spot_angle = 34.0
+
+[node name="InteractRay" type="RayCast3D" parent="Player/HeadPivot/Camera3D"]
+target_position = Vector3(0, 0, -2.6)
+collision_mask = 2
+
+[node name="KillerLetterInteract" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08, 0.72, 3.05)
+collision_layer = 2
+metadata/interact_id = "killer_letter"
+metadata/interact_prompt = "Leer Carta del Asesino"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillerLetterInteract"]
+shape = SubResource("BoxShape3D_letter")
+
+[node name="ExitDoorInteract" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.15, -7.32)
+collision_layer = 2
+metadata/interact_id = "exit_door"
+metadata/interact_prompt = "Revisar Puerta Sellada"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitDoorInteract"]
+shape = SubResource("BoxShape3D_door")
+
+[node name="MobileHUD" parent="." instance=ExtResource("5_mobile_hud")]
+player_path = NodePath("../Player")

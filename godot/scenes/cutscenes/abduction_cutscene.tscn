@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/cutscenes/abduction_cutscene.gd" id="1_cut_script"]
+[ext_resource type="Environment" path="res://resources/environments/abyss_horror_env.tres" id="2_horror_env"]
+[ext_resource type="PackedScene" path="res://assets/models/environments/cabin_intro.glb" id="3_cabin_glb"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/killer.glb" id="4_killer_glb"]
+[ext_resource type="PackedScene" path="res://assets/models/characters/victim_adult.glb" id="5_victim_glb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sub"]
+bg_color = Color(0.02, 0.02, 0.03, 0.82)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.42, 0.06, 0.08, 0.75)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+
+[node name="AbductionCutscene" type="Node3D"]
+script = ExtResource("1_cut_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_horror_env")
+
+[node name="MoonLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.92, -0.22, 0.32, 0, 0.82, 0.57, -0.39, -0.52, 0.75, 0, 4.5, -5.0)
+light_color = Color(0.48, 0.58, 0.82, 1)
+light_energy = 0.85
+shadow_enabled = true
+
+[node name="CabinDimLamp" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1.35, 1.35)
+light_color = Color(0.75, 0.58, 0.42, 1)
+light_energy = 0.38
+omni_range = 4.2
+
+[node name="CabinIntro" parent="." instance=ExtResource("3_cabin_glb")]
+
+[node name="KillerModel" parent="." instance=ExtResource("4_killer_glb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, -2.95)
+
+[node name="VictimModel" parent="." instance=ExtResource("5_victim_glb")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.35, 0.64, -0.25)
+
+[node name="CutsceneCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.48, 0.35)
+current = true
+fov = 62.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 26
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="SubtitlePanel" type="PanelContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sub")
+
+[node name="SubtitleLabel" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/SubtitlePanel"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.90, 0.85, 1)
+theme_override_font_sizes/font_size = 18
+text = "Cargando cinemática..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="SkipButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 22.0
+offset_right = -24.0
+offset_bottom = 76.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Saltar Cinemática"
+
+[node name="FadeOverlay" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

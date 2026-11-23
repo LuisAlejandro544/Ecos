@@ -1,0 +1,31 @@
+[gd_resource type="Environment" format=3]
+
+[resource]
+background_mode = 1
+background_color = Color(0.012, 0.014, 0.02, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.075, 0.09, 0.12, 1)
+ambient_light_energy = 0.28
+tonemap_mode = 3
+tonemap_exposure = 0.92
+tonemap_white = 1.15
+glow_enabled = true
+glow_levels/1 = 0.4
+glow_levels/2 = 0.65
+glow_levels/3 = 0.35
+glow_intensity = 0.6
+glow_strength = 0.85
+glow_bloom = 0.18
+glow_blend_mode = 1
+fog_enabled = true
+fog_mode = 0
+fog_light_color = Color(0.032, 0.038, 0.052, 1)
+fog_light_energy = 0.45
+fog_density = 0.075
+fog_sky_affect = 1.0
+fog_height = -1.5
+fog_height_density = 0.14
+adjustment_enabled = true
+adjustment_brightness = 0.96
+adjustment_contrast = 1.14
+adjustment_saturation = 0.72

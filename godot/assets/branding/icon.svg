@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <radialGradient id="abyss" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#141821" />
+      <stop offset="65%" stop-color="#08090d" />
+      <stop offset="100%" stop-color="#030305" />
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9fb3c8" stop-opacity="0.85" />
+      <stop offset="55%" stop-color="#47586b" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#08090d" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="url(#abyss)" />
+  <circle cx="64" cy="64" r="46" fill="url(#glow)" />
+  <path d="M24 64 C40 42, 88 42, 104 64 C88 86, 40 86, 24 64 Z" fill="none" stroke="#8a9bae" stroke-width="3" opacity="0.85" />
+  <circle cx="64" cy="64" r="14" fill="#050608" stroke="#c5d1de" stroke-width="2" />
+  <circle cx="64" cy="64" r="5" fill="#d9e2ec" opacity="0.9" />
+</svg>
